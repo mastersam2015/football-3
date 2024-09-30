@@ -23,6 +23,8 @@ var akx;
 var aky;
 var ob=0;
 var blok=0;
+var za1;
+var za2;
 
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
@@ -42,7 +44,20 @@ ctx.fillStyle = "#000000";
 		  ctx.fillRect(160,340,5,5);
 		  ctx.beginPath();
 
+function zamaluj(){
+	
+	
+				
+						 		 ctx.fillStyle = "#000000";
+	
+		 
+	 ctx.fillRect(za1,za2,5,5); 
 
+	 ctx.beginPath();	
+	
+}
+
+ setInterval(zamaluj, 1000); 
 		  function dc(){
 			  
 			  $.get( "dc.php", { cx: rx, cy: ry,lx: akx,ly: aky } ).done(function( data ) {
@@ -67,6 +82,8 @@ ctx.fillStyle = "#000000";
 		  }
 		  
 		  function sprawdz(){
+			  
+			  	
 			  
 			 	 
  //alert( akx +" "+aky+" "+rx+" "+ry);
@@ -110,6 +127,8 @@ $.get( "zapis.php", { cx: rx, cy: ry,lx: akx,ly: aky } ).done(function( data ) {
 //--------------------------------------onclick
 	  function getPosition(event)
       {
+		  
+		  if($('#ridi').val()=='ready'){
 		  //obtocz=$("#obtocz").val();
         var x = new Number();
         var y = new Number();
@@ -158,15 +177,32 @@ $.get( "zapis.php", { cx: rx, cy: ry,lx: akx,ly: aky } ).done(function( data ) {
 		 if(akx==rx &&  aky==ry+20){ob=1;}
 		 if(akx==rx &&  aky==ry-20){ob=1;}
 		 
-		 if($('#ridi').val()=='ready'){
+		 
 			 if(ob==1){
 				 if(dc()==1){}else{
+					 
+			
+				
+						
+	
+		  
 			 sprawdz();
+			 
+			 					 $.get( "xy.txt", function( data ) {
+
+tabela3=data.split("a");
+  akx=tabela3[0];
+  aky=tabela3[1];
+  
+
+}); 
+			 
+			 
 				 }
 			 //alert( akx +" "+aky+" "+rx+" "+ry);
 				ob=0;
 			}
-		 }
+		 
 			 
 			// alert();
 			 
@@ -174,6 +210,7 @@ $.get( "zapis.php", { cx: rx, cy: ry,lx: akx,ly: aky } ).done(function( data ) {
 		  //sprawdz();
 
 		  	  }
+	  }
 		  
 
 </script>
@@ -214,10 +251,11 @@ $(window).on('resize', function()
 		 
 		 <script>
 		 
-		 
+
 		 
 		 function reflesh(){
-			 //alert('www');
+			 
+	 //alert('www');
 			 
 			 
 			 
@@ -269,7 +307,7 @@ if (request.status === 200) {
 }
 // tabela=xhttp.responseText.split("a");
  
-
+ctx.fillStyle = "#000000";
   for (i=0; i<=tabela.length - 1;i++){
 	 
 	  tabela2=tabela[i].split("b");
@@ -300,7 +338,20 @@ tabela3=data.split("a");
 }); 
 
 
+	 	za1=akx;
+						za2=aky;
 
+ctx.fillStyle = "#00ff00";
+	
+		 
+	 ctx.fillRect(akx,aky,5,5);
+	 
+	 
+	 		 	
+		 
+
+		 
+		  ctx.beginPath();
 
 
 
